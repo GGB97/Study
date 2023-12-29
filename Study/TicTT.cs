@@ -4,8 +4,10 @@ using System.Runtime.Intrinsics.X86;
 
 public class TicTT
 {
+    static bool is_Running = false;
     static void ttt()
     {
+        is_Running = true;
         char[,] board = new char[3, 3];
 
         int n = 1; //초기화
@@ -37,8 +39,15 @@ public class TicTT
             // 승리/무승부 조건 검사
             if (turn > 3) // 최소 5턴부터 승리자가 나올 수 있음
                 GameOver(board);
-            //ㅡㅡㅡㅡㅡ조건검사 끝
-            turn++;
+
+            if (!is_Running)
+                break;
+            // 8턴이 끝난 후면 모든 카드가 뒤집혀서 게임이 끝난 상황
+            if (turn++ == 8)
+            {
+                Console.WriteLine("무승부!!!!!");
+                break;
+            }
         }
     }
 
@@ -163,11 +172,13 @@ public class TicTT
         {
             //P1 승리
             Console.WriteLine("P1 Win!!!!!");
+            is_Running = false;
         }
         else if (checkCnt == 0)
         {
             //P2 승리
             Console.WriteLine("P2 Win!!!!!");
+            is_Running = false;
         }
     }
 
