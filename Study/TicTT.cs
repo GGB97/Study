@@ -22,7 +22,7 @@ public class TicTT
         printBoard(board);
 
         int playeNum = 0;
-        int turn = 0; 
+        int turn = 0;
         string str;
         while (true)
         {
@@ -116,16 +116,38 @@ public class TicTT
         }
 
         // 대각선 검사
-        //checkCnt = 0; pass = false;
-        //for (int i = 0; i < board.GetLength(0); i++)
-        //{
-        //    if (!(board[i, i] == 'O') && !(board[i, i] == 'X'))
-        //        pass = true; break;
+        pass = false;
+        for (int i = 0; i < board.GetLength(0); i++)
+        {
+            if (board[i, i] != 'X' && board[i, i] != 'O')
+            {
+                pass = true;
+                Array.Clear(checkArr, 0, checkArr.Length);
+                break;
+            }
 
-        //    checkArr[i] = board[i, i];
-        //}
+            checkArr[i] = board[i, i];
+        }
 
+        if (!pass)
+            Check(checkArr);
 
+        // 대각선 검사 (반대방향)
+        pass = false;
+        for (int i = 0, j = board.GetLength(0) - 1; i < board.GetLength(0); i++)
+        {
+            if (board[i, j] != 'X' && board[i, j] != 'O')
+            {
+                pass = true;
+                Array.Clear(checkArr, 0, checkArr.Length);
+                break;
+            }
+
+            checkArr[i] = board[i, j--];
+        }
+
+        if (!pass)
+            Check(checkArr);
     }
 
     static void Check(char[] checkArr)
