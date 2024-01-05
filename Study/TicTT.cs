@@ -181,9 +181,4 @@ public class TicTT
             is_Running = false;
         }
     }
-
-    static void Main(string[] args)
-    {
-        ttt();
-    }
 }
