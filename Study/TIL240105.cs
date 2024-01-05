@@ -6,7 +6,7 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 public class TIL240105
 {
     // 2024 01 05 새로 배운 것
-    public void file()
+    public void file()  // 파일 입출력은 txt 파일로 C에서 해 본적이 있는데 c에 비하면 적어야 하는게 압도적으로 적다;;
     {
         // 파일 입출력 System.IO.File
         string filename = "파일경로 + 이름 + 확장자";
